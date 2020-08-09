@@ -107,3 +107,29 @@ print(trigram_counter.get((none, 'The', 'U.S.')))
 print(len(trigram_counter))
 print((sum(trigram_counter.values())))
 print(jas)
+print()
+
+
+def unigram_probability(input_word):
+    return unigram_counter.get(input_word) / number_of_words
+    # bigram_counter.get(input_word) ya bigram_counter.get(input_word) + 1?
+
+
+def bigram_probability(input_last, input_current):
+    total_amount = 0
+    for key in bigram_counter.keys():
+        if key[0] == input_last:
+            total_amount += bigram_counter.get(key)
+    return bigram_counter.get((input_last, input_current)) / total_amount
+
+
+def trigram_probability(input_last_last, input_last, input_current):
+    total_amount = 0
+    for key in trigram_counter.keys():
+        if key[0] == input_last_last and key[1] == input_last:
+            total_amount += trigram_counter.get(key)
+    return trigram_counter.get((input_last_last, input_last, input_current)) / total_amount
+
+
+print(unigram_probability('Abdullah'))
+print(unigram_counter.get('Abdullah'))
