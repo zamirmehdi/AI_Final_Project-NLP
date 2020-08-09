@@ -1,12 +1,16 @@
 file = open('/Users/apple/Desktop/Train_data.txt')
-text = file.readlines()
+train_text = file.readlines()
+
+file = open('/Users/apple/Desktop/Test_data.txt')
+test_text = file.readlines()
+file.close()
+
 number_of_words = 0
 
 unknown = '<UNK>'
 none = '</s>'
 
-print(len(text))
-print(text[2])
+print(len(train_text))
 
 unigram_counter = dict()
 bigram_counter = dict()
@@ -15,7 +19,7 @@ trigram_counter = dict()
 unigram_counter[unknown] = 0
 print(unigram_counter)
 
-for line in text:
+for line in train_text:
 
     temp_words = line.split(' ')
     temp_words.remove(temp_words[len(temp_words) - 1])
@@ -40,7 +44,7 @@ print(sum(unigram_counter.values()))
 print()
 
 mmd = 0
-for line in text:
+for line in train_text:
 
     temp_words = line.split(' ')
     temp_words.remove(temp_words[len(temp_words) - 1])
@@ -76,7 +80,7 @@ print(mmd)
 print()
 
 jas = 0
-for line in text:
+for line in train_text:
 
     temp_words = line.split(' ')
     temp_words.remove(temp_words[len(temp_words) - 1])
@@ -136,6 +140,9 @@ def trigram_probability_calculator(input_last_last, input_last, input_current):
         if key[0] == input_last_last and key[1] == input_last:
             total_amount += trigram_counter.get(key)
     return trigram_counter.get((input_last_last, input_last, input_current)) / total_amount
+
+
+# def back_off(l1, l2, l3, ):
 
 
 print(unigram_probability_calculator('Abdullah'))
