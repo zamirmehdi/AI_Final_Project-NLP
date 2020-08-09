@@ -18,6 +18,10 @@ print(unigram_counter)
 for line in text:
 
     temp_words = line.split(' ')
+    temp_words.remove(temp_words[len(temp_words) - 1])
+    # temp_words[len(temp_words) - 1] = temp_words[len(temp_words) - 1].replace('.\n', '')
+    # print('mmd', temp_words[len(temp_words) - 1], 'mmd')
+    # break
 
     for word in temp_words:
 
@@ -39,6 +43,7 @@ mmd = 0
 for line in text:
 
     temp_words = line.split(' ')
+    temp_words.remove(temp_words[len(temp_words) - 1])
 
     for i in range(0, len(temp_words)):
 
@@ -74,6 +79,8 @@ jas = 0
 for line in text:
 
     temp_words = line.split(' ')
+    temp_words.remove(temp_words[len(temp_words) - 1])
+
     for i in range(0, len(temp_words)):
 
         current = temp_words[i]
@@ -133,3 +140,22 @@ def trigram_probability_calculator(input_last_last, input_last, input_current):
 
 print(unigram_probability_calculator('Abdullah'))
 print(unigram_counter.get('Abdullah'))
+
+# unigram_probability = dict()
+# bigram_probability = dict()
+# trigram_probability = dict()
+#
+# for elem in unigram_counter.keys():
+#     unigram_probability[elem] = unigram_probability_calculator(elem)
+#
+# print(len(bigram_counter))
+# for elem in bigram_counter.keys():
+#     bigram_probability[elem] = bigram_probability_calculator(elem[0], elem[1])
+#     print(elem, bigram_probability.get(elem))
+#
+# for elem in trigram_counter.keys():
+#     trigram_probability[elem] = trigram_probability_calculator(elem[0], elem[1], elem[2])
+#
+# print()
+# print(len(trigram_probability))
+# print(len(trigram_counter))
