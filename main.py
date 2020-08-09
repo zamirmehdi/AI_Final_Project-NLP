@@ -25,7 +25,7 @@ for line in text:
 
         if unigram_counter.get(word) is None:
             unigram_counter[unknown] = unigram_counter.get(unknown) + 1
-            unigram_counter[word] = 0
+            unigram_counter[word] = 1
 
         else:
             unigram_counter[word] = unigram_counter.get(word) + 1
@@ -53,12 +53,12 @@ for line in text:
         if bigram_counter.get((last, current)) is None:
 
             if bigram_counter.get((last, unknown)) is None:
-                bigram_counter[last, unknown] = 0
+                bigram_counter[last, unknown] = 1
             else:
                 bigram_counter[last, unknown] = bigram_counter.get((last, unknown)) + 1
                 mmd += 1
 
-            bigram_counter[last, current] = 0
+            bigram_counter[last, current] = 1
 
         else:
             bigram_counter[last, current] = bigram_counter.get((last, current)) + 1
@@ -92,12 +92,12 @@ for line in text:
 
         if trigram_counter.get((last_last, last, current)) is None:
             if trigram_counter.get((last_last, last, unknown)) is None:
-                trigram_counter[last_last, last, unknown] = 0
+                trigram_counter[last_last, last, unknown] = 1
             else:
                 trigram_counter[last_last, last, unknown] = trigram_counter.get((last_last, last, unknown)) + 1
                 jas += 1
 
-            trigram_counter[last_last, last, current] = 0
+            trigram_counter[last_last, last, current] = 1
 
         else:
             trigram_counter[last_last, last, current] = trigram_counter.get((last_last, last, temp_words[i])) + 1
@@ -110,12 +110,12 @@ print(jas)
 print()
 
 
-def unigram_probability(input_word):
+def unigram_probability_calculator(input_word):
     return unigram_counter.get(input_word) / number_of_words
     # bigram_counter.get(input_word) ya bigram_counter.get(input_word) + 1?
 
 
-def bigram_probability(input_last, input_current):
+def bigram_probability_calculator(input_last, input_current):
     total_amount = 0
     for key in bigram_counter.keys():
         if key[0] == input_last:
@@ -123,7 +123,7 @@ def bigram_probability(input_last, input_current):
     return bigram_counter.get((input_last, input_current)) / total_amount
 
 
-def trigram_probability(input_last_last, input_last, input_current):
+def trigram_probability_calculator(input_last_last, input_last, input_current):
     total_amount = 0
     for key in trigram_counter.keys():
         if key[0] == input_last_last and key[1] == input_last:
@@ -131,5 +131,5 @@ def trigram_probability(input_last_last, input_last, input_current):
     return trigram_counter.get((input_last_last, input_last, input_current)) / total_amount
 
 
-print(unigram_probability('Abdullah'))
+print(unigram_probability_calculator('Abdullah'))
 print(unigram_counter.get('Abdullah'))
