@@ -29,9 +29,6 @@ def unigram_counter_calculator():
         line.replace(', ', '')
         temp_words = line.split(' ')
         temp_words.remove(temp_words[len(temp_words) - 1])
-        # temp_words[len(temp_words) - 1] = temp_words[len(temp_words) - 1].replace('.\n', '')
-        # print('mmd', temp_words[len(temp_words) - 1], 'mmd')
-        # break
 
         for word in temp_words:
 
@@ -43,16 +40,6 @@ def unigram_counter_calculator():
 
             else:
                 unigram_counter[word] = unigram_counter.get(word) + 1
-
-    print()
-
-    print(unigram_counter.get('.\n'))
-    print(number_of_words)
-    print(len(unigram_counter))
-    print(unigram_counter.get(unknown))
-    print(sum(unigram_counter.values()))
-    print(sum(unigram_counter.values()) - unigram_counter.get(unknown))
-    print()
 
 
 mmd = 0
@@ -96,12 +83,6 @@ def bigram_counter_calculator():
                 bigram_counter[last, current] = bigram_counter.get((last, current)) + 1
                 mmd += 1
 
-    print(bigram_counter.get(('the', 'U.S.')))
-    print(len(bigram_counter))
-    print(sum(bigram_counter.values()))
-    print(mmd)
-    print()
-
 
 jas = 0
 
@@ -143,9 +124,6 @@ def trigram_counter_calculator():
             if trigram_counter.get((last_last, last, current)) is None:
                 if trigram_counter.get((last_last, last, unknown)) is None:
                     trigram_counter[last_last, last, unknown] = 1
-                    # if temp_words[48] == 'flu' and i == 1:
-                    #     print('i:', i)
-                    #     print(last_last, last, current)
                 else:
                     trigram_counter[last_last, last, unknown] = trigram_counter.get((last_last, last, unknown)) + 1
                     jas += 1
@@ -155,12 +133,6 @@ def trigram_counter_calculator():
             else:
                 trigram_counter[last_last, last, current] = trigram_counter.get((last_last, last, current)) + 1
                 jas += 1
-
-    print(trigram_counter.get((none, 'The', 'U.S.')))
-    print(len(trigram_counter))
-    print((sum(trigram_counter.values())))
-    print(jas)
-    print()
 
 
 def unigram_probability_calculator():
@@ -178,7 +150,6 @@ def bigram_probability_calculator():
         input_last = elem[0]
         input_current = elem[1]
 
-        # bigram_probability[elem] = bigram_probability_calculator(elem[0], elem[1])
         if input_last != none:
             result = bigram_counter.get((input_last, input_current)) / unigram_counter.get(input_last)
         else:
@@ -195,7 +166,6 @@ def trigram_probability_calculator():
 
     for elem in trigram_counter.keys():
         total_amount = 0
-        # trigram_probability[elem] = trigram_probability_calculator(elem[0], elem[1], elem[2])
         input_last_last = elem[0]
         input_last = elem[1]
         input_current = elem[2]
@@ -231,41 +201,11 @@ def back_off(l1, l2, l3, input_last_last, input_last, input_current):
     return result
 
 
-# for elem in unigram_counter.keys():
-#     unigram_probability[elem] = unigram_probability_calculator(elem)
-
-# print(len(bigram_counter))
-# for elem in bigram_counter.keys():
-#     bigram_probability[elem] = bigram_probability_calculator(elem[0], elem[1])
-
-# for elem in trigram_counter.keys():
-#     trigram_probability[elem] = trigram_probability_calculator(elem[0], elem[1], elem[2])
-unigram_counter_calculator()
-bigram_counter_calculator()
-trigram_counter_calculator()
-unigram_probability_calculator()
-bigram_probability_calculator()
-trigram_probability_calculator()
-
-print(unigram_probability.get('Abdullah'))
-print(unigram_counter.get('Abdullah'))
-
-print(bigram_probability.get(('King', 'Abdullah')))
-print()
-print(len(trigram_probability))
-print(len(trigram_counter))
-print()
-
-print(max(unigram_counter.values()))
-print(list(unigram_counter.keys())[list(unigram_counter.values()).index(max(unigram_counter.values()))])
-
-
 def guess_the_blank(input_line, l1, l2, l3):
-    # break
     input_line.replace('"', '')
     input_line.replace(', ', '')
 
-    temp_words = line.split(' ')
+    temp_words = input_line.split(' ')
     last_last = none
     last = none
     min_probability = -1
@@ -312,11 +252,21 @@ def guess_the_blank(input_line, l1, l2, l3):
     return result_word
 
 
-for line in test_text:
-    line.replace('"', '')
-    line.replace(', ', '')
+print()
 
-    l1 = 0.1
-    l2 = 0.27
-    l3 = 0.53
-    guess_the_blank(line, l1, l2, l3)
+# Run!!!
+unigram_counter_calculator()
+bigram_counter_calculator()
+trigram_counter_calculator()
+unigram_probability_calculator()
+bigram_probability_calculator()
+trigram_probability_calculator()
+
+for test_line in test_text:
+    test_line.replace('"', '')
+    test_line.replace(', ', '')
+
+    lambda1 = 0.1
+    lambda2 = 0.27
+    lambda3 = 0.53
+    guess_the_blank(test_line, lambda1, lambda2, lambda3)
