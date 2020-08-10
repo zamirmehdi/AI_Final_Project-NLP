@@ -226,7 +226,7 @@ def guess_the_blank(input_line, l1, l2, l3):
             min_probability = prob
             result_word = temp
 
-    print(temp_number + ', ', result_word)
+    # print(temp_number + ',', result_word)
     return result_word
 
 
@@ -238,6 +238,9 @@ train_text = file.readlines()
 
 file = open('/Users/apple/Desktop/Test_data.txt')
 test_text = file.readlines()
+
+file = open('/Users/apple/Desktop/labels.txt')
+label_file = file.readlines()
 file.close()
 
 number_of_words = 0
@@ -263,11 +266,22 @@ unigram_probability_calculator()
 bigram_probability_calculator()
 trigram_probability_calculator()
 
-for test_line in test_text:
+lambda1 = 0.1
+lambda2 = 0.27
+lambda3 = 0.53
+
+accuracy = 0
+i = 0
+temp = ''
+for test_line in test_text[1:len(test_text)]:
     test_line.replace('"', '')
     test_line.replace(', ', '')
 
-    lambda1 = 0.1
-    lambda2 = 0.27
-    lambda3 = 0.53
-    guess_the_blank(test_line, lambda1, lambda2, lambda3)
+    result_cal = guess_the_blank(test_line, lambda1, lambda2, lambda3)
+    temp = label_file[i].split(' ')[1]
+
+    # print(temp)
+    if result_cal.strip() == temp.strip():
+        accuracy += 1
+    i += 1
+print('Accouracy: %i/%i' % (accuracy, i))
