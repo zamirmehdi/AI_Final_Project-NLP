@@ -259,20 +259,62 @@ print()
 print(max(unigram_counter.values()))
 print(list(unigram_counter.keys())[list(unigram_counter.values()).index(max(unigram_counter.values()))])
 
-for line in test_text:
 
+def guess_the_blank(input_line, l1, l2, l3):
     # break
+    input_line.replace('"', '')
+    input_line.replace(', ', '')
+
     temp_words = line.split(' ')
+    last_last = none
+    last = none
+    min_probability = -1
 
     if len(temp_words) < 2:
-        continue
+        return None
 
+    result_word = ''
     temp_words.remove(temp_words[len(temp_words) - 1])
 
     temp_number = ''.join(filter(lambda x: x.isdigit(), temp_words[0]))
     temp_words[0] = ''.join(filter(lambda x: x.isalpha(), temp_words[0]))
+
     current_index = temp_words.index('$')
 
-    # if current = 0
+    if current_index == 0:
+        last_last = none
+        last = none
+    elif current_index == 1:
+        last_last = none
+        last = temp_words[0]
+    elif current_index == len(temp_words):
+        pass
+    else:
+        last_last = temp_words[current_index - 2]
+        last = temp_words[current_index - 1]
 
-    break
+    if last_last not in unigram_counter.keys() and last_last != none:
+        last_last = unknown
+    if last not in unigram_counter.keys() and last != none:
+        last = unknown
+
+    known = list(unigram_counter.keys())
+    known.remove(unknown)
+    for temp in known:
+        prob = back_off(l1, l2, l3, last_last, last, temp)
+        if prob > min_probability:
+            min_probability = prob
+            result_word = temp
+
+    print(temp_number + ', ', result_word)
+    return result_word
+
+
+for line in test_text:
+    line.replace('"', '')
+    line.replace(', ', '')
+
+    l1 = 0.1
+    l2 = 0.27
+    l3 = 0.53
+    guess_the_blank(line, l1, l2, l3)
