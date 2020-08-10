@@ -38,7 +38,7 @@ def unigram_counter_calculator():
             number_of_words += 1
 
             if unigram_counter.get(word) is None:
-                unigram_counter[unknown] = unigram_counter.get(unknown) + 1
+                # unigram_counter[unknown] = unigram_counter.get(unknown) + 1
                 unigram_counter[word] = 1
 
             else:
@@ -84,11 +84,12 @@ def bigram_counter_calculator():
 
             if bigram_counter.get((last, current)) is None:
 
-                if bigram_counter.get((last, unknown)) is None:
-                    bigram_counter[last, unknown] = 1
-                else:
-                    bigram_counter[last, unknown] = bigram_counter.get((last, unknown)) + 1
-                    mmd += 1
+                # if bigram_counter.get((last, unknown)) is None:
+                #     bigram_counter[last, unknown] = 1
+                #
+                # else:
+                #     bigram_counter[last, unknown] = bigram_counter.get((last, unknown)) + 1
+                #     mmd += 1
 
                 bigram_counter[last, current] = 1
 
@@ -141,14 +142,14 @@ def trigram_counter_calculator():
                 last_last = temp_words[i - 2]
 
             if trigram_counter.get((last_last, last, current)) is None:
-                if trigram_counter.get((last_last, last, unknown)) is None:
-                    trigram_counter[last_last, last, unknown] = 1
-                    # if temp_words[48] == 'flu' and i == 1:
-                    #     print('i:', i)
-                    #     print(last_last, last, current)
-                else:
-                    trigram_counter[last_last, last, unknown] = trigram_counter.get((last_last, last, unknown)) + 1
-                    jas += 1
+                # if trigram_counter.get((last_last, last, unknown)) is None:
+                #     trigram_counter[last_last, last, unknown] = 1
+                #     # if temp_words[48] == 'flu' and i == 1:
+                #     #     print('i:', i)
+                #     #     print(last_last, last, current)
+                # else:
+                #     trigram_counter[last_last, last, unknown] = trigram_counter.get((last_last, last, unknown)) + 1
+                #     jas += 1
 
                 trigram_counter[last_last, last, current] = 1
 
@@ -213,12 +214,12 @@ def trigram_probability_calculator():
 
 
 def back_off(l1, l2, l3, input_last_last, input_last, input_current):
-    if unigram_counter.get(input_last_last is None):
-        input_last_last = unknown
-    if unigram_counter.get(input_last is None):
-        input_last = unknown
-    if unigram_counter.get(input_current is None):
-        input_current = unknown
+    # if unigram_counter.get(input_last_last is None):
+    #     input_last_last = unknown
+    # if unigram_counter.get(input_last is None):
+    #     input_last = unknown
+    # if unigram_counter.get(input_current is None):
+    #     input_current = unknown
 
     result = unigram_probability.get(input_current) * l1
 
@@ -298,9 +299,11 @@ def guess_the_blank(input_line, l1, l2, l3):
     if last not in unigram_counter.keys() and last != none:
         last = unknown
 
-    known = list(unigram_counter.keys())
-    known.remove(unknown)
-    for temp in known:
+    known = unigram_counter.copy()
+    for i in range(0, 19):
+        known.pop(list(known.keys())[list(known.values()).index(max(known.values()))])
+
+    for temp in known.keys():
         prob = back_off(l1, l2, l3, last_last, last, temp)
         if prob > min_probability:
             min_probability = prob
@@ -314,7 +317,7 @@ for line in test_text:
     line.replace('"', '')
     line.replace(', ', '')
 
-    l1 = 0.1
-    l2 = 0.27
-    l3 = 0.53
+    l1 = 0.15
+    l2 = 0.4
+    l3 = 0.55
     guess_the_blank(line, l1, l2, l3)
