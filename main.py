@@ -85,16 +85,17 @@ for line in train_text:
     temp_words = line.split(' ')
     temp_words.remove(temp_words[len(temp_words) - 1])
 
-    for i in range(0, len(temp_words) + 1):
+    for i in range(0, (len(temp_words) + 1)):
 
         last = ''
         last_last = ''
-
+        if len(temp_words) <= 1:
+            continue
         if i == 0:
             current = temp_words[i]
             last = none
             last_last = none
-        elif i == 1 and i > len(temp_words):
+        elif i == 1 and len(temp_words) > 1:
             current = temp_words[i]
             last = temp_words[i - 1]
             last_last = none
@@ -110,6 +111,9 @@ for line in train_text:
         if trigram_counter.get((last_last, last, current)) is None:
             if trigram_counter.get((last_last, last, unknown)) is None:
                 trigram_counter[last_last, last, unknown] = 1
+                # if temp_words[48] == 'flu' and i == 1:
+                #     print('i:', i)
+                #     print(last_last, last, current)
             else:
                 trigram_counter[last_last, last, unknown] = trigram_counter.get((last_last, last, unknown)) + 1
                 jas += 1
@@ -129,7 +133,6 @@ print()
 
 def unigram_probability_calculator(input_word):
     return unigram_counter.get(input_word) / number_of_words
-    # bigram_counter.get(input_word) ya bigram_counter.get(input_word) + 1?
 
 
 def bigram_probability_calculator(input_last, input_current):
