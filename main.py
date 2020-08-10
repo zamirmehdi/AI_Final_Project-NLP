@@ -6,18 +6,14 @@ test_text = file.readlines()
 file.close()
 
 number_of_words = 0
-
 unknown = '<UNK>'
 none = '</s>'
-
-print(len(train_text))
 
 unigram_counter = dict()
 bigram_counter = dict()
 trigram_counter = dict()
 
 unigram_counter[unknown] = 0
-print(unigram_counter)
 
 for line in train_text:
 
@@ -49,14 +45,18 @@ for line in train_text:
     temp_words = line.split(' ')
     temp_words.remove(temp_words[len(temp_words) - 1])
 
-    for i in range(0, len(temp_words)):
+    for i in range(0, len(temp_words) + 1):
 
-        current = temp_words[i]
         last = ''
 
         if i == 0:
+            current = temp_words[i]
             last = none
+        elif i == len(temp_words):
+            current = none
+            last = temp_words[len(temp_words) - 1]
         else:
+            current = temp_words[i]
             last = temp_words[i - 1]
 
         if bigram_counter.get((last, current)) is None:
@@ -85,19 +85,25 @@ for line in train_text:
     temp_words = line.split(' ')
     temp_words.remove(temp_words[len(temp_words) - 1])
 
-    for i in range(0, len(temp_words)):
+    for i in range(0, len(temp_words) + 1):
 
-        current = temp_words[i]
         last = ''
         last_last = ''
 
         if i == 0:
+            current = temp_words[i]
             last = none
             last_last = none
-        elif i == 1:
+        elif i == 1 and i > len(temp_words):
+            current = temp_words[i]
             last = temp_words[i - 1]
             last_last = none
+        elif i == len(temp_words):
+            current = none
+            last = temp_words[len(temp_words) - 1]
+            last_last = temp_words[len(temp_words) - 2]
         else:
+            current = temp_words[i]
             last = temp_words[i - 1]
             last_last = temp_words[i - 2]
 
@@ -111,7 +117,7 @@ for line in train_text:
             trigram_counter[last_last, last, current] = 1
 
         else:
-            trigram_counter[last_last, last, current] = trigram_counter.get((last_last, last, temp_words[i])) + 1
+            trigram_counter[last_last, last, current] = trigram_counter.get((last_last, last, current)) + 1
             jas += 1
 
 print(trigram_counter.get((none, 'The', 'U.S.')))
