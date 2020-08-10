@@ -26,7 +26,7 @@ def unigram_counter_calculator():
     for line in train_text:
 
         line.replace('"', '')
-        line.replace(',', '')
+        line.replace(', ', '')
         temp_words = line.split(' ')
         temp_words.remove(temp_words[len(temp_words) - 1])
         # temp_words[len(temp_words) - 1] = temp_words[len(temp_words) - 1].replace('.\n', '')
@@ -298,8 +298,10 @@ def guess_the_blank(input_line, l1, l2, l3):
     if last not in unigram_counter.keys() and last != none:
         last = unknown
 
-    known = list(unigram_counter.keys())
-    known.remove(unknown)
+    known = unigram_counter.copy()
+    for i in range(0, 3):
+        known.pop(list(known.keys())[list(known.values()).index(max(known.values()))])
+
     for temp in known:
         prob = back_off(l1, l2, l3, last_last, last, temp)
         if prob > min_probability:
