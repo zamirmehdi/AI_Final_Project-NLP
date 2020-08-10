@@ -166,21 +166,43 @@ def trigram_probability_calculator(input_last_last, input_last, input_current):
 print(unigram_probability_calculator('Abdullah'))
 print(unigram_counter.get('Abdullah'))
 
-# unigram_probability = dict()
-# bigram_probability = dict()
-# trigram_probability = dict()
-#
-# for elem in unigram_counter.keys():
-#     unigram_probability[elem] = unigram_probability_calculator(elem)
-#
-# print(len(bigram_counter))
-# for elem in bigram_counter.keys():
-#     bigram_probability[elem] = bigram_probability_calculator(elem[0], elem[1])
-#     print(elem, bigram_probability.get(elem))
-#
-# for elem in trigram_counter.keys():
-#     trigram_probability[elem] = trigram_probability_calculator(elem[0], elem[1], elem[2])
-#
-# print()
-# print(len(trigram_probability))
-# print(len(trigram_counter))
+unigram_probability = dict()
+bigram_probability = dict()
+trigram_probability = dict()
+
+for elem in unigram_counter.keys():
+    unigram_probability[elem] = unigram_probability_calculator(elem)
+
+print(len(bigram_counter))
+for elem in bigram_counter.keys():
+    bigram_probability[elem] = bigram_probability_calculator(elem[0], elem[1])
+
+for elem in trigram_counter.keys():
+    trigram_probability[elem] = trigram_probability_calculator(elem[0], elem[1], elem[2])
+
+print(bigram_probability.get(('King', 'Abdullah')))
+print()
+print(len(trigram_probability))
+print(len(trigram_counter))
+print()
+
+print(max(unigram_counter.values()))
+print(list(unigram_counter.keys())[list(unigram_counter.values()).index(max(unigram_counter.values()))])
+
+for line in test_text:
+
+    # break
+    temp_words = line.split(' ')
+
+    if len(temp_words) < 2:
+        continue
+
+    temp_words.remove(temp_words[len(temp_words) - 1])
+
+    temp_number = ''.join(filter(lambda x: x.isdigit(), temp_words[0]))
+    temp_words[0] = ''.join(filter(lambda x: x.isalpha(), temp_words[0]))
+    current_index = temp_words.index('$')
+
+    # if current = 0
+
+    break
