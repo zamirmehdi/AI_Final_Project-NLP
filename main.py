@@ -137,18 +137,27 @@ def unigram_probability_calculator(input_word):
 
 def bigram_probability_calculator(input_last, input_current):
     total_amount = 0
-    for key in bigram_counter.keys():
-        if key[0] == input_last:
-            total_amount += bigram_counter.get(key)
-    return bigram_counter.get((input_last, input_current)) / total_amount
+
+    if input_last != none:
+        return bigram_counter.get((input_last, input_current)) / unigram_counter.get(input_last)
+    else:
+        for key in bigram_counter.keys():
+            if key[0] == none:
+                total_amount += bigram_counter.get(key)
+        return bigram_counter.get((input_last, input_current)) / total_amount
 
 
 def trigram_probability_calculator(input_last_last, input_last, input_current):
     total_amount = 0
-    for key in trigram_counter.keys():
-        if key[0] == input_last_last and key[1] == input_last:
-            total_amount += trigram_counter.get(key)
-    return trigram_counter.get((input_last_last, input_last, input_current)) / total_amount
+
+    if input_last != none:
+        return (trigram_counter.get((input_last_last, input_last, input_current))) / (bigram_counter.get((
+            (input_last_last, input_last))))
+    else:
+        for key in trigram_counter.keys():
+            if key[1] == none:
+                total_amount += trigram_counter.get(key)
+        return trigram_counter.get((input_last_last, input_last, input_current)) / total_amount
 
 
 # def back_off(l1, l2, l3, ):
