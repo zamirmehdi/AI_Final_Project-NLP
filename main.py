@@ -1,25 +1,3 @@
-file = open('/Users/apple/Desktop/Train_data.txt')
-train_text = file.readlines()
-
-file = open('/Users/apple/Desktop/Test_data.txt')
-test_text = file.readlines()
-file.close()
-
-number_of_words = 0
-unknown = '<UNK>'
-none = '</s>'
-
-unigram_counter = dict()
-bigram_counter = dict()
-trigram_counter = dict()
-
-unigram_probability = dict()
-bigram_probability = dict()
-trigram_probability = dict()
-
-unigram_counter[unknown] = 0
-
-
 def unigram_counter_calculator():
     global unigram_counter
     global number_of_words
@@ -254,10 +232,33 @@ def guess_the_blank(input_line, l1, l2, l3):
 
 print()
 
+# Data input:
+file = open('/Users/apple/Desktop/Train_data.txt')
+train_text = file.readlines()
+
+file = open('/Users/apple/Desktop/Test_data.txt')
+test_text = file.readlines()
+file.close()
+
+number_of_words = 0
+unknown = '<UNK>'
+none = '</s>'
+
+unigram_counter = dict()
+bigram_counter = dict()
+trigram_counter = dict()
+
+unigram_probability = dict()
+bigram_probability = dict()
+trigram_probability = dict()
+
+unigram_counter[unknown] = 0
+
 # Run!!!
 unigram_counter_calculator()
 bigram_counter_calculator()
 trigram_counter_calculator()
+
 unigram_probability_calculator()
 bigram_probability_calculator()
 trigram_probability_calculator()
