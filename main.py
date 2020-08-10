@@ -212,12 +212,23 @@ def trigram_probability_calculator():
         trigram_probability[elem] = result
 
 
-# def back_off(l1, l2, l3, ):
+def back_off(l1, l2, l3, input_last_last, input_last, input_current):
+    if unigram_counter.get(input_last_last is None):
+        input_last_last = unknown
+    if unigram_counter.get(input_last is None):
+        input_last = unknown
+    if unigram_counter.get(input_current is None):
+        input_current = unknown
 
+    result = unigram_probability.get(input_current) * l1
 
+    if (input_last_last, input_last) in bigram_counter.keys():
+        result += bigram_probability[(input_last_last, input_last)] * l2
 
-# print(unigram_probability_calculator('Abdullah'))
-# print(unigram_counter.get('Abdullah'))
+    if (input_last_last, input_last, input_current) in trigram_counter.keys():
+        result += trigram_probability[(input_last_last, input_last, input_current)] * l3
+
+    return result
 
 
 # for elem in unigram_counter.keys():
@@ -235,6 +246,9 @@ trigram_counter_calculator()
 unigram_probability_calculator()
 bigram_probability_calculator()
 trigram_probability_calculator()
+
+print(unigram_probability.get('Abdullah'))
+print(unigram_counter.get('Abdullah'))
 
 print(bigram_probability.get(('King', 'Abdullah')))
 print()
