@@ -1,3 +1,11 @@
+# NLP Trigram Model - Text Prediction & Completion
+
+A statistical Natural Language Processing system that predicts and completes sentences using a trigram language model trained on Persian text. (This project is also a part of the [Artificial Intelligence Course](https://github.com/zamirmehdi/Artificial-Intelligence-Course) repository.)
+
+[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
+[![NLP](https://img.shields.io/badge/NLP-Language%20Modeling-green.svg)](#)
+[![Persian](https://img.shields.io/badge/Language-Persian-red.svg)](#)
+
 <details> <summary><h2>📚 Table of Contents</h2></summary>
 
 - [Project Overview](#-project-overview)
@@ -22,14 +30,6 @@
 - [Contact](#-contact)
 
 </details>
-
-# NLP Trigram Model - Text Prediction & Completion
-
-A statistical Natural Language Processing system that predicts and completes sentences using a trigram language model trained on Persian text. (This project is also a part of the [Artificial Intelligence Course](https://github.com/zamirmehdi/Artificial-Intelligence-Course) repository.)
-
-[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
-[![NLP](https://img.shields.io/badge/NLP-Language%20Modeling-green.svg)](#)
-[![Persian](https://img.shields.io/badge/Language-Persian-red.svg)](#)
 
 ## 📋 Project Overview
 
