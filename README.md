@@ -1,3 +1,28 @@
+<details> <summary><h2>📚 Table of Contents</h2></summary>
+
+- [Project Overview](#-project-overview)
+- [N-gram Language Models](#-n-gram-language-models)
+  - [What is a Trigram?](#what-is-a-trigram)
+  - [Example](#example)
+  - [N-gram Types](#n-gram-types)
+- [Project Structure](#️-project-structure)
+- [Files Description](#-files-description)
+- [Requirements](#️-requirements)
+- [How to Run](#-how-to-run)
+- [Input/Output](#-inputoutput)
+- [Key Features](#-key-features)
+- [Concepts Demonstrated](#-concepts-demonstrated)
+- [Model Evaluation](#-model-evaluation)
+- [Customization](#-customization)
+- [Theoretical Background](#-theoretical-background)
+- [Persian Language Considerations](#-persian-language-considerations)
+- [References](#-references)
+- [Project Information](#ℹ️-project-information)
+- [Related Projects](#-related-projects)
+- [Contact](#-contact)
+
+</details>
+
 # NLP Trigram Model - Text Prediction & Completion
 
 A statistical Natural Language Processing system that predicts and completes sentences using a trigram language model trained on Persian text. (This project is also a part of the [Artificial Intelligence Course](https://github.com/zamirmehdi/Artificial-Intelligence-Course) repository.)
