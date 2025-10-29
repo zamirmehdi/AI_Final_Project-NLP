@@ -245,6 +245,18 @@ P(sentence) ≈ ∏ P(wᵢ | wᵢ₋₂, wᵢ₋₁)
 - Character normalization
 - Consideration of language-specific features
 
+## 📚 References
+
+- **Jurafsky, D., & Martin, J. H.** (2023). *Speech and Language Processing* (3rd ed.).
+- **Manning, C. D., & Schütze, H.** (1999). *Foundations of Statistical Natural Language Processing*.
+
+## ℹ️ Project Information
+
+**Author:** Amirmehdi Zarrinnezhad  
+**Course:** Artificial Intelligence  
+**University:** Amirkabir University of Technology (Tehran Polytechnic) - Spring 2020  
+**GitHub:** [AI_Final_Project-NLP](https://github.com/zamirmehdi/AI_Final_Project-NLP)
+
 ## 🔗 Related Projects
 
 This project is part of the [Artificial Intelligence Course](https://github.com/zamirmehdi/Artificial-Intelligence-Course) repository.
@@ -253,27 +265,29 @@ This project is part of the [Artificial Intelligence Course](https://github.com/
 - [Students Lineup](https://github.com/zamirmehdi/Artificial-Intelligence-Course/tree/main/Students-Lineup-Project) - Search algorithms
 - [Super Mario LRTA*](https://github.com/zamirmehdi/AI-Project-Super-Mario) - Heuristic pathfinding
 
-## 📚 References
 
-- **Jurafsky, D., & Martin, J. H.** (2023). *Speech and Language Processing* (3rd ed.).
-- **Manning, C. D., & Schütze, H.** (1999). *Foundations of Statistical Natural Language Processing*.
+## 📧 Contact  
+Questions or collaborations? Feel free to reach out!
 
-## 📧 Contact
-
-**Author:** Amirmehdi Zarrinnezhad  
 **Email:** amzarrinnezhad@gmail.com  
-**GitHub:** [@zamirmehdi](https://github.com/zamirmehdi)
+**🌐 GitHub:** [@zamirmehdi](https://github.com/zamirmehdi)
 
----
-
-**Course:** Artificial Intelligence  
-**University:** Amirkabir University of Technology (Tehran Polytechnic)  
-**Semester:** Spring 2020
 
 ---
 
 <div align="center">
 
 [⬆ Back to Main Repository](https://github.com/zamirmehdi/Artificial-Intelligence-Course)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+</div>
+
+
+
+<div align="center">
+
+⭐ **If you found this project helpful, please consider giving it a star!** ⭐
+
+*Amirmehdi Zarrinnezhad*
 
 </div>
