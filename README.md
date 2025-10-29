@@ -269,7 +269,7 @@ This project is part of the [Artificial Intelligence Course](https://github.com/
 ## 📧 Contact  
 Questions or collaborations? Feel free to reach out!
 
-**Email:** amzarrinnezhad@gmail.com  
+**📧 Email:** amzarrinnezhad@gmail.com  
 **🌐 GitHub:** [@zamirmehdi](https://github.com/zamirmehdi)
 
 
