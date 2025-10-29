@@ -233,13 +233,13 @@ def guess_the_blank(input_line, l1, l2, l3):
 print()
 
 # Data input:
-file = open('/Users/apple/Desktop/Train_data.txt')
+file = open('./Train_data.txt')
 train_text = file.readlines()
 
-file = open('/Users/apple/Desktop/Test_data.txt')
+file = open('./Test_data.txt')
 test_text = file.readlines()
 
-file = open('/Users/apple/Desktop/labels.txt')
+file = open('./labels.txt')
 label_file = file.readlines()
 file.close()
 
@@ -266,22 +266,24 @@ unigram_probability_calculator()
 bigram_probability_calculator()
 trigram_probability_calculator()
 
-lambda1 = 0.1
-lambda2 = 0.27
-lambda3 = 0.53
+print(unigram_probability.keys())
+
+lambda1 = 0
+lambda2 = 0.7
+lambda3 = 0.3
 
 accuracy = 0
 i = 0
-temp = ''
+temp_label = ''
 for test_line in test_text[1:len(test_text)]:
     test_line.replace('"', '')
     test_line.replace(', ', '')
 
     result_cal = guess_the_blank(test_line, lambda1, lambda2, lambda3)
-    temp = label_file[i].split(' ')[1]
+    temp_label = label_file[i].split(' ')[1]
 
-    # print(temp)
-    if result_cal.strip() == temp.strip():
+    # print(result_cal, temp_label)
+    if result_cal.strip() == temp_label.strip():
         accuracy += 1
     i += 1
-print('Accouracy: %i/%i' % (accuracy, i))
+print('Accuracy: %i / %i' % (accuracy, i))
